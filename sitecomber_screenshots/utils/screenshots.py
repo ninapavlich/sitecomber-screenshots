@@ -2,6 +2,7 @@ import os
 import time
 import tempfile
 
+from django.core.files.base import ContentFile
 
 def getSizes(settings):
     if "sizes" in settings:
@@ -15,9 +16,10 @@ def generateLatestScreenshot(browser, storage, page, settings):
     data = {}
     status = "success" # or warning or error
 
-    data["screenshots"] = generateScreenshot(browser, storage, page.url, settings, "latest", "sitecomber-screenshots/%s/%s/"%(page.site_domain.id, page.id))
+    data["screenshots"] = generateScreenshot(browser, storage, page.url, settings, "latest", "sitecomber-screenshots/%s/%s/"%(page.site_domain.site.id, page.id))
 
-    return status, messages, data
+    message = u" ".join(messages)
+    return status, message, data
 
 def generateHistoricalScreenshots(browser, storage, page, settings):
     messages = []
@@ -29,7 +31,8 @@ def generateHistoricalScreenshots(browser, storage, page, settings):
     data["screenshots_monthly"] = generateScreenshot(browser, storage, page.url, settings, "monthly", "sitecomber-screenshots/%s/%s/"%(page.site_domain.id, page.id))
     data["screenshots_yearly"] = generateScreenshot(browser, storage, page.url, settings, "yearly", "sitecomber-screenshots/%s/%s/"%(page.site_domain.id, page.id))
 
-    return status, messages, data
+    message = u" ".join(messages)
+    return status, message, data
 
 
 def generateScreenshot(browser, storage, url, settings, filePrefix, folder):

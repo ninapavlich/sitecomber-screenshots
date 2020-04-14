@@ -32,6 +32,7 @@ Library Set Up:
 ```
 SITECOMBER_SCREENSHOTS_DRIVER_CLASS=Firefox
 SITECOMBER_SCREENSHOTS_DRIVER_PATH=/usr/local/bin/geckodriver
+SITECOMBER_SCREENSHOTS_STORAGE_BACKEND=default
 ```
 
 4. Restart server to see new tests available in site settings
