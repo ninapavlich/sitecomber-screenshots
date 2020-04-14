@@ -80,10 +80,6 @@ class LatestScreenshotTest(BaseSiteTest):
                 test=self.class_path
             )
 
-            print(status)
-            print(message)
-            print(data)
-            
             r.message = message
             r.status = status
             try:
